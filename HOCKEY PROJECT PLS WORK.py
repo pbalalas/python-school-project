@@ -43,7 +43,7 @@ def writeFile(name, fileName):
         json.dump(name, file)
 
 #create another function to read the file
-def readfile(name, fileName):
+def readfile(fileName):
     with open(fileName+".json", "r") as file:
         testFile= json.load(file)
         print(testFile)
@@ -61,8 +61,11 @@ signUp = str(input("do you want to login or sign up?   "))
 signUp= signUp.lower().replace(" ", "")
 signUp= signUp.find("signup")
 print(signUp)
+
 #allow user to sign up
 if signUp != -1:
     username = str(input("Enter your username:   "))
     password = str(input("Enter your password:   "))
-    
+    UserLogin= {username: password}
+    writeFile(UserLogin, "UserLogin")
+    readfile("UserLogin")

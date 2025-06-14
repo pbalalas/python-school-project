@@ -62,6 +62,10 @@ signUp= signUp.lower().replace(" ", "")
 signUp= signUp.find("signup")
 print(signUp)
 
+#create a file for usernames and passwords
+userLogin= {}
+writeFile(userLogin, "UserLogin")
+
 #allow user to sign up
 if signUp != -1:
     username = str(input("Enter your username:   "))

@@ -40,13 +40,13 @@ capitals= {"Nickolas Backstrom": 7,
 #will also help with user logins later on
 def writeFile(name, fileName):
     with open(fileName+".json", "w") as file:
-        json.dump(name, file)
+        json.dump(name, file, indent=4)
 
 #create another function to read the file
-def readfile(fileName):
+def readFile(fileName):
     with open(fileName+".json", "r") as file:
         testFile= json.load(file)
-        print(testFile)
+        return testFile
 
 #Convert all dictionaries into a json file
 writeFile(ducks, "ducks")
@@ -57,19 +57,16 @@ writeFile(capitals, "capitals")
 
 #create user interface
 #ask user to login or sign up
-signUp = str(input("do you want to login or sign up?   "))
-signUp= signUp.lower().replace(" ", "")
-signUp= signUp.find("signup")
+access = str(input("do you want to login or sign up?   "))
+access= access.lower().replace(" ", "")
+signUp= access.find("signup")
 print(signUp)
-
-#create a file for usernames and passwords
-userLogin= {}
-writeFile(userLogin, "UserLogin")
+login= access.find("login")
+print(login)
 
 #allow user to sign up
 if signUp != -1:
     username = str(input("Enter your username:   "))
     password = str(input("Enter your password:   "))
     UserLogin= {username: password}
-    writeFile(UserLogin, "UserLogin")
-    readfile("UserLogin")
+    #add the new username and password (unless it already exists)

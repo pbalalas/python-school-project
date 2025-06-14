@@ -68,5 +68,16 @@ print(login)
 if signUp != -1:
     username = str(input("Enter your username:   "))
     password = str(input("Enter your password:   "))
-    UserLogin= {username: password}
+    userLogin= {username: password}
     #add the new username and password (unless it already exists)
+    try:
+        userLogin = readFile("userLogin")
+    except(FileNotFoundError, json.JSONDecodeError):
+        userLogin= {}
+    
+    #now add the username and password into the file
+    if username in userLogin:
+        print("username already exists")
+    else:
+        userLogin[username] = password
+        writeFile(userLogin, "userLogin")

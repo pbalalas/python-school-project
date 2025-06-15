@@ -59,7 +59,7 @@ writeFile(capitals, "capitals")
 #ask user to login or sign up
 signUp = -1
 login = -1
-while login!= -1 or signUp != -1:
+while login == -1 and signUp == -1:
     access = str(input("do you want to login or sign up?   "))
     access= access.lower().replace(" ", "")
     signUp= access.find("signup")
@@ -68,30 +68,30 @@ while login!= -1 or signUp != -1:
 
 #allow user to sign up
 if signUp != -1:
-    username = str(input("Enter your username:   "))
-    password = str(input("Enter your password:   "))
-    doubleChecking = str(input("retype your password:   "))
-    while doubleChecking != password: 
-        if doubleChecking != password:
-            print("password does not match, retry")
-        username = str(input("Enter your username:   "))
-        password = str(input("Enter your password:   "))
-        doubleChecking = str(input("retype your password:   "))
-    userLogin= {username: password}
-    #add the new username and password (unless it already exists)
+    
     try:
         userLogin = readFile("userLogin")
     except(FileNotFoundError, json.JSONDecodeError):
         userLogin= {}
     
-    #now add the username and password into the file
-    if username in userLogin:
+    username = str(input("Enter your username:   "))
+
+    while username in userLogin:
         print("username already exists")
-    else:
-        userLogin[username] = password
-        writeFile(userLogin, "userLogin")
+        username = str(input("Enter your username"))
+                
+    password = str(input("Enter your password:   "))
+    doubleChecking = str(input("retype your password:   "))
+    while doubleChecking != password: 
+        if doubleChecking != password:
+            print("password does not match, retry")
+            password = str(input("Enter your password:   "))
+            doubleChecking = str(input("retype your password:   "))
+        
+    userLogin[username] = {"password": password, "score": 0}
+    writeFile(userLogin, "userLogin")
 
 #allow the user to login to their account
 elif login != -1:
-    username = str(input("Enter your username:   "))
-    password = str(input("Enter your password:   "))
+    username = str(input("enter your username"))
+    password = str(input("enter your password"))

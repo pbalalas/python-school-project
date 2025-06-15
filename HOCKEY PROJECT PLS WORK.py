@@ -55,13 +55,15 @@ writeFile(flames, "flames")
 writeFile(spongebob, "spongebob")
 writeFile(capitals, "capitals")
 
-#allow user to sign up
+#allow user to sign up, using a function
 def signUp():    
+    #creates a new file, if file is corrupted or missing
     try:
         userLogin = readFile("userLogin")
     except(FileNotFoundError, json.JSONDecodeError):
         userLogin= {}
     
+    print("You are signing in")
     username = str(input("Enter your username:   "))
 
     while username in userLogin:
@@ -90,6 +92,7 @@ def login():
     except(FileNotFoundError, json.JSONDecodeError):
         userLogin= {}
     
+    print("You are logging in")
     username = str(input("enter your username:   "))
     
     while username not in userLogin:

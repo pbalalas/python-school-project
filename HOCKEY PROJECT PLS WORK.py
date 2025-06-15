@@ -68,8 +68,7 @@ def signUp():
         print("username already exists")
         username = str(input("Enter your username(or type 'login' to login instead):   "))
         if username.lower().replace(" ", "").find("login") != -1:
-            login_flag = username
-            return login_flag
+            return "login"
         
     password = str(input("Enter your password:   "))
     doubleChecking = str(input("retype your password:   "))
@@ -81,7 +80,7 @@ def signUp():
         
     userLogin[username] = {"password": password, "score": 0}
     writeFile(userLogin, "userLogin")
-    return "success"
+    return "successful"
 
 
 #allow the user to login to their account
@@ -91,22 +90,23 @@ def login():
     except(FileNotFoundError, json.JSONDecodeError):
         userLogin= {}
     
-    username = str(input("enter your username"))
+    username = str(input("enter your username:   "))
     
     while username not in userLogin:
         username = str(input("username does not exist, try again (or type 'signup' to signup instead):   "))
         if username.lower().replace(" ", "").find("signup") != -1:
-            signUp_flag = username
-            return signUp_flag
+            return "signup"
     
     password = str(input("enter your password:   "))
     if userLogin[username]["password"] == password:
         print("login successful")
+        return "successful"
     else:
         while userLogin[username]["password"] != password:
             password = str(input("password is incorrect, try again:   "))
         print("login successful")
-        return "success"
+        return "successful"
+    
 #create user interface
 #ask user to login or sign up
 signUp_flag = -1
@@ -121,15 +121,17 @@ while login_flag == -1 and signUp_flag == -1:
 while True:
     if signUp_flag != -1:
         result = signUp()
-        if result != -1:
-            login()
-        else:
+        if result == "login":
+            signUp_flag = -1
+            login_flag = 0
+        elif result == "successful":
             break
     elif login_flag != -1:
         result = login()
-        if result != -1:
-            signUp()
-        else:
+        if result == "signup":
+            signUp_flag = 0
+            login_flag = -1
+        elif result == "successful":
             break
 
-
+print("it worked")

@@ -68,7 +68,8 @@ def signUp():
         print("username already exists")
         username = str(input("Enter your username(or type 'login' to login instead):   "))
         if username.lower().replace(" ", "").find("login") != -1:
-            return "login"
+            login_flag = username
+            return login_flag
         
     password = str(input("Enter your password:   "))
     doubleChecking = str(input("retype your password:   "))
@@ -80,7 +81,7 @@ def signUp():
         
     userLogin[username] = {"password": password, "score": 0}
     writeFile(userLogin, "userLogin")
-    return
+    return "success"
 
 
 #allow the user to login to their account
@@ -95,8 +96,8 @@ def login():
     while username not in userLogin:
         username = str(input("username does not exist, try again (or type 'signup' to signup instead):   "))
         if username.lower().replace(" ", "").find("signup") != -1:
-            signUp = username
-            return signUp
+            signUp_flag = username
+            return signUp_flag
     
     password = str(input("enter your password:   "))
     if userLogin[username]["password"] == password:
@@ -105,13 +106,30 @@ def login():
         while userLogin[username]["password"] != password:
             password = str(input("password is incorrect, try again:   "))
         print("login successful")
-
+        return "success"
 #create user interface
 #ask user to login or sign up
-signUp = -1
-login = -1
-while login == -1 and signUp == -1:
+signUp_flag = -1
+login_flag = -1
+while login_flag == -1 and signUp_flag == -1:
     access = str(input("do you want to login or sign up?   "))
     access= access.lower().replace(" ", "")
-    signUp= access.find("signup")
-    login= access.find("login")
+    signUp_flag= access.find("signup")
+    login_flag= access.find("login")
+
+#implement sign up and login actions
+while True:
+    if signUp_flag != -1:
+        result = signUp()
+        if result != -1:
+            login()
+        else:
+            break
+    elif login_flag != -1:
+        result = login()
+        if result != -1:
+            signUp()
+        else:
+            break
+
+

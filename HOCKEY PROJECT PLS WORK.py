@@ -55,20 +55,8 @@ writeFile(flames, "flames")
 writeFile(spongebob, "spongebob")
 writeFile(capitals, "capitals")
 
-#create user interface
-#ask user to login or sign up
-signUp = -1
-login = -1
-while login == -1 and signUp == -1:
-    access = str(input("do you want to login or sign up?   "))
-    access= access.lower().replace(" ", "")
-    signUp= access.find("signup")
-    login= access.find("login")
-
-
 #allow user to sign up
-if signUp != -1:
-    
+def signUp():    
     try:
         userLogin = readFile("userLogin")
     except(FileNotFoundError, json.JSONDecodeError):
@@ -78,8 +66,10 @@ if signUp != -1:
 
     while username in userLogin:
         print("username already exists")
-        username = str(input("Enter your username"))
-                
+        username = str(input("Enter your username(or type 'login' to login instead):   "))
+        if username.lower().replace(" ", "").find("login") != -1:
+            return "login"
+        
     password = str(input("Enter your password:   "))
     doubleChecking = str(input("retype your password:   "))
     while doubleChecking != password: 
@@ -90,8 +80,38 @@ if signUp != -1:
         
     userLogin[username] = {"password": password, "score": 0}
     writeFile(userLogin, "userLogin")
+    return
+
 
 #allow the user to login to their account
-elif login != -1:
+def login():
+    try:
+        userLogin = readFile("userLogin")
+    except(FileNotFoundError, json.JSONDecodeError):
+        userLogin= {}
+    
     username = str(input("enter your username"))
-    password = str(input("enter your password"))
+    
+    while username not in userLogin:
+        username = str(input("username does not exist, try again (or type 'signup' to signup instead):   "))
+        if username.lower().replace(" ", "").find("signup") != -1:
+            signUp = username
+            return signUp
+    
+    password = str(input("enter your password:   "))
+    if userLogin[username]["password"] == password:
+        print("login successful")
+    else:
+        while userLogin[username]["password"] != password:
+            password = str(input("password is incorrect, try again:   "))
+        print("login successful")
+
+#create user interface
+#ask user to login or sign up
+signUp = -1
+login = -1
+while login == -1 and signUp == -1:
+    access = str(input("do you want to login or sign up?   "))
+    access= access.lower().replace(" ", "")
+    signUp= access.find("signup")
+    login= access.find("login")

@@ -57,17 +57,26 @@ writeFile(capitals, "capitals")
 
 #create user interface
 #ask user to login or sign up
-access = str(input("do you want to login or sign up?   "))
-access= access.lower().replace(" ", "")
-signUp= access.find("signup")
-print(signUp)
-login= access.find("login")
-print(login)
+signUp = -1
+login = -1
+while login!= -1 or signUp != -1:
+    access = str(input("do you want to login or sign up?   "))
+    access= access.lower().replace(" ", "")
+    signUp= access.find("signup")
+    login= access.find("login")
+
 
 #allow user to sign up
 if signUp != -1:
     username = str(input("Enter your username:   "))
     password = str(input("Enter your password:   "))
+    doubleChecking = str(input("retype your password:   "))
+    while doubleChecking != password: 
+        if doubleChecking != password:
+            print("password does not match, retry")
+        username = str(input("Enter your username:   "))
+        password = str(input("Enter your password:   "))
+        doubleChecking = str(input("retype your password:   "))
     userLogin= {username: password}
     #add the new username and password (unless it already exists)
     try:
@@ -81,3 +90,8 @@ if signUp != -1:
     else:
         userLogin[username] = password
         writeFile(userLogin, "userLogin")
+
+#allow the user to login to their account
+elif login != -1:
+    username = str(input("Enter your username:   "))
+    password = str(input("Enter your password:   "))

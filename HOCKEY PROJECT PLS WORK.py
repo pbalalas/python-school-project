@@ -1,40 +1,66 @@
 import json
 
-#Create dictionaries for teams to store in a json file
-ducks= {"Leo Carlson": 9,
-        "Robby Fabri": 7,
-        "Cutter Gauthier": 6,
-        "Jansen Harkins": 6,
-        "Ross Jhonson": 4,
-        "Goalkeeper": 3}
+#Create dictionaries to store the musicians in multiple json files
+artists = {
+    "lewiscapaldi": {
+        "S_______ Y__ L____": "Someone You Loved",
+        "B_____ Y__ G__": "Before You Go",
+        "H___ M_ W____ Y__ W___": "Hold Me While You Wait",
+        "F______ Y__ G__": "Forever You Go",
+        "L___ G______": "Last Goodbye"
+    },
+    "greenday": {
+        "B______ C___": "Basket Case",
+        "A_______ I____": "American Idiot",
+        "G___ R_______": "Good Riddance",
+        "W___ I C___ A_____": "When I Come Around",
+        "B_________ __ B_____ D______": "Boulevard of Broken Dreams"
+    },
+    "foofighters": {
+        "E____": "Everlong",
+        "T___ C__ D___": "The Color Dave",
+        "L___ C__": "Learn to Fly",
+        "M__ W___": "Monkey Wrench",
+        "B__ M___ B__": "Big Me"
+    },
+    "shawnmendes": {
+        "S_________": "Stitches",
+        "I_ T___ Y__": "In My Blood",
+        "S____ S___": "Senorita",
+        "M__ I_ Y__": "Mercy",
+        "L____ M_": "Lost in Japan"
+    },
+    "metallica": {
+        "N_______": "Nothing Else Matters",
+        "E_______": "Enter Sandman",
+        "O___ B____": "One Battery",
+        "S___ M_____": "Sad But True",
+        "T__ U_________": "The Unforgiven"
+    },
+    "beatles": {
+        "H__ J___ B____": "Hey Jude",
+        "L___ M_": "Let Me",
+        "C___ I_": "Come In",
+        "Y__ N__ A__": "You Never Alone",
+        "A__ I_ M___ L___": "All I’ve Made Love"
+    },
+    "mozart": {
+        "S____ K. 525": "Symphony No. 40 in G minor, K. 550",
+        "T__ R______": "The Requiem",
+        "F____ C______": "Eine kleine Nachtmusik",
+        "P______ K. 545": "Piano Sonata No. 16 in C major, K. 545",
+        "D___ C_______": "Don Giovanni"
+    },
+    "arcticmonkeys": {
+        "D___ S_____": "Do I Wanna Know?",
+        "R______ W___": "R U Mine?",
+        "A_____": "Arabella",
+        "C_____ M__": "Cornerstone",
+        "F__ C______": "Fluorescent Adolescent"
+    }
+}
 
-kings= {"Quintin Byfield": 5,
-        "Philip Denault": 2,
-        "Kevin Fiala": 2,
-        "Trevor Lewis": 6,
-        "Taylor Ward": 10,
-        "Goalkeeper": 7}
 
-flames= {"Morgan Frost": 10,
-         "Kevin Rooney": 10,
-         "Conner Zairy": 10,
-         "Ryan Lomberg": 1,
-         "Jake Bean": 1,
-         "Goalkeeper": 2}
-
-spongebob= {"SpongeBob": 1,
-            "Patrick": 1,
-            "Sandy": 1,
-            "Crabby Patty": 1,
-            "Squidward": 1,
-            "Goalkeeper": 7}
-
-capitals= {"Nickolas Backstrom": 7,
-           "Dylen Strom": 6,
-           "Ethen Frank": 5,
-           "Ryon Leonard": 4,
-           "Jhon Carlson": 3,
-           "Goalkeeper": 7}
 
 #create a function to write dictionaries into json file
 #will also help with user logins later on
@@ -49,11 +75,7 @@ def readFile(fileName):
         return testFile
 
 #Convert all dictionaries into a json file
-writeFile(ducks, "ducks")
-writeFile(kings, "kings")
-writeFile(flames, "flames")
-writeFile(spongebob, "spongebob")
-writeFile(capitals, "capitals")
+writeFile(artists, "artists")
 
 #allow user to sign up, using a function
 def signUp():    
@@ -73,7 +95,7 @@ def signUp():
             return "login"
         
     password = str(input("Enter your password:   "))
-    doubleChecking = str(input("retype your password:   "))
+    doubleChecking = str(input("retype your password:  "))
     while doubleChecking != password: 
         if doubleChecking != password:
             print("password does not match, retry")
@@ -137,4 +159,5 @@ while True:
         elif result == "successful":
             break
 
-print("it worked")
+#Create the random number generator to take random artist
+import random

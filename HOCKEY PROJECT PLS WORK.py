@@ -18,7 +18,7 @@ artists = {
     },
     "foofighters": {
         "E____": "Everlong",
-        "T___ C__ D___": "The Color Dave",
+        "£_____": "Wheels",
         "L___ C__": "Learn to Fly",
         "M__ W___": "Monkey Wrench",
         "B__ M___ B__": "Big Me"
@@ -161,3 +161,65 @@ while True:
 
 #Create the random number generator to take random artist
 import random
+
+
+"""
+artists = {
+    "lewiscapaldi": {
+        "someoneyouloved.mp3": "Someone You Loved",
+        "beforeyougo.mp3": "Before You Go",
+        "holdmewhileyouwait.mp3": "Hold Me While You Wait",
+        "foreveryougo.mp3": "Forever You Go",
+        "lastgoodbye.mp3": "Last Goodbye"
+    },
+    "greenday": {
+        "basketcase.mp3": "Basket Case",
+        "americanidiot.mp3": "American Idiot",
+        "goodriddance.mp3": "Good Riddance",
+        "whenicomearound.mp3": "When I Come Around",
+        "boulevardofbrokendreams.mp3": "Boulevard of Broken Dreams"
+    },
+    "foofighters": {
+        "everlong.mp3": "Everlong",
+        "wheels.mp3": "Wheels",
+        "learntofly.mp3": "Learn to Fly",
+        "monkeywrench.mp3": "Monkey Wrench",
+        "bigme.mp3": "Big Me"
+    },
+    "shawnmendes": {
+        "stitches.mp3": "Stitches",
+        "inmyblood.mp3": "In My Blood",
+        "senorita.mp3": "Senorita",
+        "mercy.mp3": "Mercy",
+        "lostinjapan.mp3": "Lost in Japan"
+    },
+    "metallica": {
+        "nothingelsematters.mp3": "Nothing Else Matters",
+        "entersandman.mp3": "Enter Sandman",
+        "onebattery.mp3": "One Battery",
+        "sadbuttrue.mp3": "Sad But True",
+        "theunforgiven.mp3": "The Unforgiven"
+    },
+    "beatles": {
+        "heyjude.mp3": "Hey Jude",
+        "letme.mp3": "Let Me",
+        "comein.mp3": "Come In",
+        "youneveralone.mp3": "You Never Alone",
+        "allivemadelove.mp3": "All I’ve Made Love"
+    },
+    "mozart": {
+        "symphonyno40ingminor,k.550.mp3": "Symphony No. 40 in G minor, K. 550",
+        "therequiem.mp3": "The Requiem",
+        "einekleinenachtmusik.mp3": "Eine kleine Nachtmusik",
+        "pianosonatano16incmajor,k.545.mp3": "Piano Sonata No. 16 in C major, K. 545",
+        "dongiovanni.mp3": "Don Giovanni"
+    },
+    "arcticmonkeys": {
+        "doiwannaknow?.mp3": "Do I Wanna Know?",
+        "rumine?.mp3": "R U Mine?",
+        "arabella.mp3": "Arabella",
+        "cornerstone.mp3": "Cornerstone",
+        "fluorescentadolescent.mp3": "Fluorescent Adolescent"
+    }
+}
+"""

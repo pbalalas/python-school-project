@@ -15,9 +15,9 @@ artists = {
         "Last Goodbye": "lastgoodbye.mp3"
     },
     "greenday": {
-        "Basket Case": "basketcase.mp3",
-        "American Idiot": "americanidiot.mp3",
-        "Good Riddance": "goodriddance.mp3",
+        "Basket Case": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Basket%20Case.mp3",
+        "American Idiot": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Green%20Day%20-%20American%20Idiot%20Official%20Audio%20(1).mp3",
+        "Good Riddance": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Green%20Day%20-%20Good%20Riddance%20Time%20of%20Your%20Life%20Official%20Music%20Video%204K%20UPGRADE.mp3",
         "When I Come Around": "whenicomearound.mp3",
         "Boulevard of Broken Dreams": "boulevardofbrokendreams.mp3"
     },
@@ -190,7 +190,7 @@ def playAudio(url, duration):
     with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as file:
         file.write(response.content)
         tempPath = file.name
-            
+
     #play audio for requested amount of time
     try:
         pygame.mixer.init()

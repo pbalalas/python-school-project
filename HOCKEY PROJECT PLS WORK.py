@@ -1,6 +1,7 @@
 import json
-from pytube import YouTube
 import pygame
+import requests
+import tempfile
 import time
 import random
 
@@ -178,23 +179,27 @@ def randomSong():
     return name, song
 
 #create another function to download the youtube url as audio
-def audio(url):
-    try:
-        yt = YouTube(url)
-        #gets only the audio from the artist
-        audioStream = yt.streams.filter(only_audio=True).first()
-        #downloads the audio
-        audioFile = audioStream.download(filename = "audio.mp4")
-        return audioFile
-    except Exception:
-        print("error downloading audio")
+def playAudio(url, duration):    
+    # Download the audio file temporarily
+    response = requests.get(url)
+    if response.status_code != 200:
+        print("Failed to fetch audio.")
+        return
     
-#create another function to play 5 seconds of audio
-def playAudio(audioFile):
-    pygame.mixer.init()
-    pygame.mixer.music.load(audioFile)
-    pygame.mixer.music.play()
-    time.sleep(3)
-    pygame.mixer.music.stop()
-    pygame.mixer.quit()
+    # Save to a temporary file
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".mp3") as file:
+        file.write(response.content)
+        tempPath = file.name
+            
+    #play audio for requested amount of time
+    try:
+        pygame.mixer.init()
+        pygame.mixer.music.load(tempPath)
+        pygame.mixer.music.play()
+        time.sleep(duration)
+        pygame.mixer.music.stop()
+        pygame.mixer.quit()
+    except Exception as e:
+        print("there was an error:   {e}")
 
+playAudio("https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Green%20Day%20-%20American%20Idiot%20Official%20Audio%20(1).mp3", 5)

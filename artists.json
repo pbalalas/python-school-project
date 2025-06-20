@@ -1,58 +1,65 @@
 {
     "lewiscapaldi": {
-        "S_______ Y__ L____": "Someone You Loved",
-        "B_____ Y__ G__": "Before You Go",
-        "H___ M_ W____ Y__ W___": "Hold Me While You Wait",
-        "F______ Y__ G__": "Forever You Go",
-        "L___ G______": "Last Goodbye"
+        "Someone You Loved": "someoneyouloved.mp3",
+        "Before You Go": "beforeyougo.mp3",
+        "Hold Me While You Wait": "holdmewhileyouwait.mp3",
+        "Forever You Go": "foreveryougo.mp3",
+        "Last Goodbye": "lastgoodbye.mp3"
     },
     "greenday": {
-        "B______ C___": "Basket Case",
-        "A_______ I____": "American Idiot",
-        "G___ R_______": "Good Riddance",
-        "W___ I C___ A_____": "When I Come Around",
-        "B_________ __ B_____ D______": "Boulevard of Broken Dreams"
+        "Basket Case": "basketcase.mp3",
+        "American Idiot": "americanidiot.mp3",
+        "Good Riddance": "goodriddance.mp3",
+        "When I Come Around": "whenicomearound.mp3",
+        "Boulevard of Broken Dreams": "boulevardofbrokendreams.mp3"
     },
     "foofighters": {
-        "E____": "Everlong",
-        "T___ C__ D___": "The Color Dave",
-        "L___ C__": "Learn to Fly",
-        "M__ W___": "Monkey Wrench",
-        "B__ M___ B__": "Big Me"
+        "Everlong": "everlong.mp3",
+        "Wheels": "wheels.mp3",
+        "Learn to Fly": "learntofly.mp3",
+        "Monkey Wrench": "monkeywrench.mp3",
+        "Big Me": "bigme.mp3"
     },
     "shawnmendes": {
-        "S_________": "Stitches",
-        "I_ T___ Y__": "In My Blood",
-        "S____ S___": "Senorita",
-        "M__ I_ Y__": "Mercy",
-        "L____ M_": "Lost in Japan"
+        "Stitches": "stitches.mp3",
+        "In My Blood": "inmyblood.mp3",
+        "Senorita": "senorita.mp3",
+        "Mercy": "mercy.mp3",
+        "Lost in Japan": "lostinjapan.mp3"
     },
     "metallica": {
-        "N_______": "Nothing Else Matters",
-        "E_______": "Enter Sandman",
-        "O___ B____": "One Battery",
-        "S___ M_____": "Sad But True",
-        "T__ U_________": "The Unforgiven"
+        "Nothing Else Matters": "nothingelsematters.mp3",
+        "Enter Sandman": "entersandman.mp3",
+        "One Battery": "onebattery.mp3",
+        "Sad But True": "sadbuttrue.mp3",
+        "The Unforgiven": "theunforgiven.mp3"
     },
     "beatles": {
-        "H__ J___ B____": "Hey Jude",
-        "L___ M_": "Let Me",
-        "C___ I_": "Come In",
-        "Y__ N__ A__": "You Never Alone",
-        "A__ I_ M___ L___": "All I\u2019ve Made Love"
+        "Hey Jude": "heyjude.mp3",
+        "Let Me": "letme.mp3",
+        "Come In": "comein.mp3",
+        "You Never Alone": "youneveralone.mp3",
+        "All I\u2019ve Made Love": "allivemadelove.mp3"
     },
     "mozart": {
-        "S____ K. 525": "Symphony No. 40 in G minor, K. 550",
-        "T__ R______": "The Requiem",
-        "F____ C______": "Eine kleine Nachtmusik",
-        "P______ K. 545": "Piano Sonata No. 16 in C major, K. 545",
-        "D___ C_______": "Don Giovanni"
+        "Symphony No. 40 in G minor, K. 550": "symphonyno40ingminor,k.550.mp3",
+        "The Requiem": "therequiem.mp3",
+        "Eine kleine Nachtmusik": "einekleinenachtmusik.mp3",
+        "Piano Sonata No. 16 in C major, K. 545": "pianosonatano16incmajor,k.545.mp3",
+        "Don Giovanni": "dongiovanni.mp3"
     },
     "arcticmonkeys": {
-        "D___ S_____": "Do I Wanna Know?",
-        "R______ W___": "R U Mine?",
-        "A_____": "Arabella",
-        "C_____ M__": "Cornerstone",
-        "F__ C______": "Fluorescent Adolescent"
+        "Do I Wanna Know?": "doiwannaknow?.mp3",
+        "R U Mine?": "rumine?.mp3",
+        "Arabella": "arabella.mp3",
+        "Cornerstone": "cornerstone.mp3",
+        "Fluorescent Adolescent": "fluorescentadolescent.mp3"
+    },
+    "bach": {
+        "Toccata and Fugue in D minor, BWV 565": "toccataandfugue.mp3",
+        "Brandenburg Concerto No. 3": "brandenburgconcerto.mp3",
+        "Air on the G String": "aironagstring.mp3",
+        "Goldberg Variations": "goldbergvariations.mp3",
+        "The Well-Tempered Clavier": "welltemperedclavier.mp3"
     }
 }

@@ -1,65 +1,75 @@
 import json
+from pytube import YouTube
+import pygame
+import time
+import random
 
 #Create dictionaries to store the musicians in multiple json files
 artists = {
     "lewiscapaldi": {
-        "S_______ Y__ L____": "Someone You Loved",
-        "B_____ Y__ G__": "Before You Go",
-        "H___ M_ W____ Y__ W___": "Hold Me While You Wait",
-        "F______ Y__ G__": "Forever You Go",
-        "L___ G______": "Last Goodbye"
+        "Someone You Loved": "someoneyouloved.mp3",
+        "Before You Go": "beforeyougo.mp3",
+        "Hold Me While You Wait": "holdmewhileyouwait.mp3",
+        "Forever You Go": "foreveryougo.mp3",
+        "Last Goodbye": "lastgoodbye.mp3"
     },
     "greenday": {
-        "B______ C___": "Basket Case",
-        "A_______ I____": "American Idiot",
-        "G___ R_______": "Good Riddance",
-        "W___ I C___ A_____": "When I Come Around",
-        "B_________ __ B_____ D______": "Boulevard of Broken Dreams"
+        "Basket Case": "basketcase.mp3",
+        "American Idiot": "americanidiot.mp3",
+        "Good Riddance": "goodriddance.mp3",
+        "When I Come Around": "whenicomearound.mp3",
+        "Boulevard of Broken Dreams": "boulevardofbrokendreams.mp3"
     },
     "foofighters": {
-        "E____": "Everlong",
-        "£_____": "Wheels",
-        "L___ C__": "Learn to Fly",
-        "M__ W___": "Monkey Wrench",
-        "B__ M___ B__": "Big Me"
+        "Everlong": "everlong.mp3",
+        "Wheels": "wheels.mp3",
+        "Learn to Fly": "learntofly.mp3",
+        "Monkey Wrench": "monkeywrench.mp3",
+        "Big Me": "bigme.mp3"
     },
     "shawnmendes": {
-        "S_________": "Stitches",
-        "I_ T___ Y__": "In My Blood",
-        "S____ S___": "Senorita",
-        "M__ I_ Y__": "Mercy",
-        "L____ M_": "Lost in Japan"
+        "Stitches": "stitches.mp3",
+        "In My Blood": "inmyblood.mp3",
+        "Senorita": "senorita.mp3",
+        "Mercy": "mercy.mp3",
+        "Lost in Japan": "lostinjapan.mp3"
     },
     "metallica": {
-        "N_______": "Nothing Else Matters",
-        "E_______": "Enter Sandman",
-        "O___ B____": "One Battery",
-        "S___ M_____": "Sad But True",
-        "T__ U_________": "The Unforgiven"
+        "Nothing Else Matters": "nothingelsematters.mp3",
+        "Enter Sandman": "entersandman.mp3",
+        "One Battery": "onebattery.mp3",
+        "Sad But True": "sadbuttrue.mp3",
+        "The Unforgiven": "theunforgiven.mp3"
     },
     "beatles": {
-        "H__ J___ B____": "Hey Jude",
-        "L___ M_": "Let Me",
-        "C___ I_": "Come In",
-        "Y__ N__ A__": "You Never Alone",
-        "A__ I_ M___ L___": "All I’ve Made Love"
+        "Hey Jude": "heyjude.mp3",
+        "Let Me": "letme.mp3",
+        "Come In": "comein.mp3",
+        "You Never Alone": "youneveralone.mp3",
+        "All I’ve Made Love": "allivemadelove.mp3"
     },
     "mozart": {
-        "S____ K. 525": "Symphony No. 40 in G minor, K. 550",
-        "T__ R______": "The Requiem",
-        "F____ C______": "Eine kleine Nachtmusik",
-        "P______ K. 545": "Piano Sonata No. 16 in C major, K. 545",
-        "D___ C_______": "Don Giovanni"
+        "Symphony No. 40 in G minor, K. 550": "symphonyno40ingminor,k.550.mp3",
+        "The Requiem": "therequiem.mp3",
+        "Eine kleine Nachtmusik": "einekleinenachtmusik.mp3",
+        "Piano Sonata No. 16 in C major, K. 545": "pianosonatano16incmajor,k.545.mp3",
+        "Don Giovanni": "dongiovanni.mp3"
     },
     "arcticmonkeys": {
-        "D___ S_____": "Do I Wanna Know?",
-        "R______ W___": "R U Mine?",
-        "A_____": "Arabella",
-        "C_____ M__": "Cornerstone",
-        "F__ C______": "Fluorescent Adolescent"
+        "Do I Wanna Know?": "doiwannaknow?.mp3",
+        "R U Mine?": "rumine?.mp3",
+        "Arabella": "arabella.mp3",
+        "Cornerstone": "cornerstone.mp3",
+        "Fluorescent Adolescent": "fluorescentadolescent.mp3"
+    },
+    "bach": {
+        "Toccata and Fugue in D minor, BWV 565": "toccataandfugue.mp3",
+        "Brandenburg Concerto No. 3": "brandenburgconcerto.mp3",
+        "Air on the G String": "aironagstring.mp3",
+        "Goldberg Variations": "goldbergvariations.mp3",
+        "The Well-Tempered Clavier": "welltemperedclavier.mp3"
     }
 }
-
 
 
 #create a function to write dictionaries into json file
@@ -159,67 +169,32 @@ while True:
         elif result == "successful":
             break
 
-#Create the random number generator to take random artist
-import random
+#create function to choose a random url from the dictionary
+def randomSong():
+    #chooses a random artist from the dictionary artists
+    name = random.choice(list(artists.keys()))
+    #chooses a random song from the artist
+    song = random.choice(list(artists[name].keys()))
+    return name, song
 
+#create another function to download the youtube url as audio
+def audio(url):
+    try:
+        yt = YouTube(url)
+        #gets only the audio from the artist
+        audioStream = yt.streams.filter(only_audio=True).first()
+        #downloads the audio
+        audioFile = audioStream.download(filename = "audio.mp4")
+        return audioFile
+    except Exception:
+        print("error downloading audio")
+    
+#create another function to play 5 seconds of audio
+def playAudio(audioFile):
+    pygame.mixer.init()
+    pygame.mixer.music.load(audioFile)
+    pygame.mixer.music.play()
+    time.sleep(3)
+    pygame.mixer.music.stop()
+    pygame.mixer.quit()
 
-"""
-artists = {
-    "lewiscapaldi": {
-        "someoneyouloved.mp3": "Someone You Loved",
-        "beforeyougo.mp3": "Before You Go",
-        "holdmewhileyouwait.mp3": "Hold Me While You Wait",
-        "foreveryougo.mp3": "Forever You Go",
-        "lastgoodbye.mp3": "Last Goodbye"
-    },
-    "greenday": {
-        "basketcase.mp3": "Basket Case",
-        "americanidiot.mp3": "American Idiot",
-        "goodriddance.mp3": "Good Riddance",
-        "whenicomearound.mp3": "When I Come Around",
-        "boulevardofbrokendreams.mp3": "Boulevard of Broken Dreams"
-    },
-    "foofighters": {
-        "everlong.mp3": "Everlong",
-        "wheels.mp3": "Wheels",
-        "learntofly.mp3": "Learn to Fly",
-        "monkeywrench.mp3": "Monkey Wrench",
-        "bigme.mp3": "Big Me"
-    },
-    "shawnmendes": {
-        "stitches.mp3": "Stitches",
-        "inmyblood.mp3": "In My Blood",
-        "senorita.mp3": "Senorita",
-        "mercy.mp3": "Mercy",
-        "lostinjapan.mp3": "Lost in Japan"
-    },
-    "metallica": {
-        "nothingelsematters.mp3": "Nothing Else Matters",
-        "entersandman.mp3": "Enter Sandman",
-        "onebattery.mp3": "One Battery",
-        "sadbuttrue.mp3": "Sad But True",
-        "theunforgiven.mp3": "The Unforgiven"
-    },
-    "beatles": {
-        "heyjude.mp3": "Hey Jude",
-        "letme.mp3": "Let Me",
-        "comein.mp3": "Come In",
-        "youneveralone.mp3": "You Never Alone",
-        "allivemadelove.mp3": "All I’ve Made Love"
-    },
-    "mozart": {
-        "symphonyno40ingminor,k.550.mp3": "Symphony No. 40 in G minor, K. 550",
-        "therequiem.mp3": "The Requiem",
-        "einekleinenachtmusik.mp3": "Eine kleine Nachtmusik",
-        "pianosonatano16incmajor,k.545.mp3": "Piano Sonata No. 16 in C major, K. 545",
-        "dongiovanni.mp3": "Don Giovanni"
-    },
-    "arcticmonkeys": {
-        "doiwannaknow?.mp3": "Do I Wanna Know?",
-        "rumine?.mp3": "R U Mine?",
-        "arabella.mp3": "Arabella",
-        "cornerstone.mp3": "Cornerstone",
-        "fluorescentadolescent.mp3": "Fluorescent Adolescent"
-    }
-}
-"""

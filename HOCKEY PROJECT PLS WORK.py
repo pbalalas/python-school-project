@@ -38,9 +38,9 @@ artists = {
     "Beatles": {
         "Hey Jude": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Hey%20Jude%20Remastered%202015.mp3",
         "Let It Be": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Let%20It%20Be%20Remastered%202009.mp3",
-        "Come In": "comein.mp3",
-        "You Never Alone": "youneveralone.mp3",
-        "Yellow Submarine": "yellowsubmarine.mp3"
+        "Here Comes The Sun": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/The%20Beatles%20-%20Here%20Comes%20The%20Sun%202019%20Mix.mp3",
+        "Day Tripper": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Day%20Tripper%20Remastered%202015.mp3",
+        "Yellow Submarine": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/The%20Beatles%20-%20Yellow%20Submarine.mp3"
     },
     "Beethoven": {
         "Symphony No. 5 in C Minor, Op. 67": "symphony5incminorop67.mp3",

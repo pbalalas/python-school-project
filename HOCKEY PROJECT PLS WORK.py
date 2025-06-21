@@ -4,6 +4,7 @@ import requests
 import tempfile
 import time
 import random
+import threading
 
 #Create dictionaries to store the musicians in multiple json files
 artists = {
@@ -175,22 +176,45 @@ def playAudio(url, duration):
     #play audio for requested amount of time
     if duration != 0:
         try:
+            #this part should stop as soon as the user enters something
             pygame.mixer.init()
             pygame.mixer.music.load(tempPath)
             pygame.mixer.music.play()
-            time.sleep(duration)
-            pygame.mixer.music.stop()
+
+            stop_flag = threading.Event()
+            guess = {"guess": ""}
+            
+            def wait_for_input():
+                guess["guess"] = input("Enter your guess:   ")
+                stop_flag.set()
+
+            inputThread = threading.Thread(target = wait_for_input)
+            inputThread.start()
+            
+            stop_flag.wait(duration)
+            
+            pygame.mixer.music.fadeout(5000)
+            time.sleep(5)
+            inputThread.join()
             pygame.mixer.quit()
+
+            return guess["guess"]
+            
         except Exception as e:
             print(f"there was an error:   {e}")
+            
     else:
         try:
+            #this part the music should stop after a delay, or when the user enters something
             pygame.mixer.init()
             pygame.mixer.music.load(tempPath)
             pygame.mixer.music.play()
-            while pygame.mixer.music.get_busy():
-                time.sleep(0.1)
-            pygame.mixer.music.stop()
+
+            input("press enter to stop playing music:   ")
+                
+            
+            pygame.mixer.music.fadeout(5000)
+            time.sleep(5)
             pygame.mixer.quit()
         except Exception as e:
             print(f"there was an error:   {e}")
@@ -198,7 +222,8 @@ def playAudio(url, duration):
 #start creating UI to guess the song
 while True: 
     play_game = input("Do you want to play?   ")
-    if play_game.lower().replace(" ","").find("yes") != -1:
+    play_game = play_game.lower().replace(" ","").find("yes")
+    if play_game != -1:
         break
     elif play_game.lower().replace(" ", "").find("no") != -1:
         print("why did you even login??")
@@ -215,3 +240,9 @@ while True:
         exit()
     else:
         print("please type yes or no")
+
+playAudio(artists["Greenday"]["American Idiot"], 5)
+
+while play_game != -1:
+    name, songName = randomSong()
+        

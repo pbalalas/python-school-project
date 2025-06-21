@@ -8,11 +8,11 @@ import random
 #Create dictionaries to store the musicians in multiple json files
 artists = {
     "Lewis Capaldi": {
-        "Someone You Loved": "someoneyouloved.mp3",
-        "Before You Go": "beforeyougo.mp3",
-        "Hold Me While You Wait": "holdmewhileyouwait.mp3",
-        "Forever You Go": "foreveryougo.mp3",
-        "Last Goodbye": "lastgoodbye.mp3"
+        "Someone You Loved": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Lewis%20Capaldi%20-%20Someone%20You%20Loved.mp3",
+        "Before You Go": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Lewis%20Capaldi%20-%20Before%20You%20Go%20Official%20Video.mp3",
+        "Hold Me While You Wait": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Lewis%20Capaldi%20-%20Hold%20Me%20While%20You%20Wait%20Interlude%20Session.mp3",
+        "Forever": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Forever.mp3",
+        "Bruises": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Lewis%20Capaldi%20-%20Bruises%20Official%20Audio.mp3"
     },
     "Greenday": {
         "Basket Case": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Basket%20Case.mp3",
@@ -22,23 +22,16 @@ artists = {
         "Boulevard of Broken Dreams": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Green%20Day%20-%20Boulevard%20of%20Broken%20Dreams%20Official%20Audio.mp3"
     },
     "Foo Fighters": {
-        "Everlong": "everlong.mp3",
-        "Wheels": "wheels.mp3",
-        "Learn to Fly": "learntofly.mp3",
-        "Monkey Wrench": "monkeywrench.mp3",
-        "Big Me": "bigme.mp3"
-    },
-    "Shawn Mendes": {
-        "Stitches": "stitches.mp3",
-        "In My Blood": "inmyblood.mp3",
-        "Senorita": "senorita.mp3",
-        "Mercy": "mercy.mp3",
-        "Lost in Japan": "lostinjapan.mp3"
+        "Everlong": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Foo%20Fighters%20-%20Everlong%20Official%20HD%20Video.mp3",
+        "Wheels": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Wheels.mp3",
+        "Learn to Fly": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Foo%20Fighters%20-%20Learn%20to%20Fly.mp3",
+        "Monkey Wrench": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Foo%20Fighters%20-%20Monkey%20Wrench.mp3",
+        "Pretender": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Foo%20Fighters%20-%20The%20Pretender.mp3"
     },
     "Metallica": {
-        "Nothing Else Matters": "nothingelsematters.mp3",
+        "Nothing Else Matters": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Metallica_%20Nothing%20Else%20Matters%20Official%20Music%20Video.mp3",
         "Enter Sandman": "entersandman.mp3",
-        "One Battery": "onebattery.mp3",
+        "For Whome the Bell Tolls": "forwhomethebelltolls.mp3",
         "Sad But True": "sadbuttrue.mp3",
         "The Unforgiven": "theunforgiven.mp3"
     },
@@ -49,27 +42,13 @@ artists = {
         "You Never Alone": "youneveralone.mp3",
         "All I’ve Made Love": "allivemadelove.mp3"
     },
-    "Mozart": {
-        "Symphony No. 40 in G minor, K. 550": "symphonyno40ingminor,k.550.mp3",
-        "The Requiem": "therequiem.mp3",
-        "Eine kleine Nachtmusik": "einekleinenachtmusik.mp3",
-        "Piano Sonata No. 16 in C major, K. 545": "pianosonatano16incmajor,k.545.mp3",
-        "Don Giovanni": "dongiovanni.mp3"
+    "Beethoven": {
+        "Symphony No. 5 in C Minor, Op. 67": "symphony5incminorop67.mp3",
+        "Für Elise": "furelise.mp3",
+        "Moonlight Sonata": "moonlightsonata.mp3",
+        "Ode to Joy": "odetojoy.mp3",
+        "Piano Concerto No. 5 in E-flat major, Op. 73": "pianoconcerto5.mp3"
     },
-    "Arctic Monkeys": {
-        "Do I Wanna Know?": "doiwannaknow?.mp3",
-        "R U Mine?": "rumine?.mp3",
-        "Arabella": "arabella.mp3",
-        "Cornerstone": "cornerstone.mp3",
-        "Fluorescent Adolescent": "fluorescentadolescent.mp3"
-    },
-    "Bach": {
-        "Toccata and Fugue in D minor, BWV 565": "toccataandfugue.mp3",
-        "Brandenburg Concerto No. 3": "brandenburgconcerto.mp3",
-        "Air on the G String": "aironagstring.mp3",
-        "Goldberg Variations": "goldbergvariations.mp3",
-        "The Well-Tempered Clavier": "welltemperedclavier.mp3"
-    }
 }
 
 

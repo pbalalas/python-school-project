@@ -30,17 +30,17 @@ artists = {
     },
     "Metallica": {
         "Nothing Else Matters": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Metallica_%20Nothing%20Else%20Matters%20Official%20Music%20Video.mp3",
-        "Enter Sandman": "entersandman.mp3",
-        "For Whome the Bell Tolls": "forwhomethebelltolls.mp3",
-        "Sad But True": "sadbuttrue.mp3",
-        "The Unforgiven": "theunforgiven.mp3"
+        "Enter Sandman": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Metallica_%20Enter%20Sandman%20Official%20Music%20Video.mp3",
+        "For Whome the Bell Tolls": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/For%20Whom%20The%20Bell%20Tolls%20Remastered.mp3",
+        "Sad But True": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Sad%20But%20True%20Remastered.mp3",
+        "The Unforgiven": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/YouTube%20(1).mp3"
     },
     "Beatles": {
-        "Hey Jude": "heyjude.mp3",
-        "Let Me": "letme.mp3",
+        "Hey Jude": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Hey%20Jude%20Remastered%202015.mp3",
+        "Let It Be": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Let%20It%20Be%20Remastered%202009.mp3",
         "Come In": "comein.mp3",
         "You Never Alone": "youneveralone.mp3",
-        "All I’ve Made Love": "allivemadelove.mp3"
+        "Yellow Submarine": "yellowsubmarine.mp3"
     },
     "Beethoven": {
         "Symphony No. 5 in C Minor, Op. 67": "symphony5incminorop67.mp3",

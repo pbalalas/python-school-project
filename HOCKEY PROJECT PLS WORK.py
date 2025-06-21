@@ -173,15 +173,27 @@ def playAudio(url, duration):
         tempPath = file.name
 
     #play audio for requested amount of time
-    try:
-        pygame.mixer.init()
-        pygame.mixer.music.load(tempPath)
-        pygame.mixer.music.play()
-        time.sleep(duration)
-        pygame.mixer.music.stop()
-        pygame.mixer.quit()
-    except Exception as e:
-        print("there was an error:   {e}")
+    if duration != 0:
+        try:
+            pygame.mixer.init()
+            pygame.mixer.music.load(tempPath)
+            pygame.mixer.music.play()
+            time.sleep(duration)
+            pygame.mixer.music.stop()
+            pygame.mixer.quit()
+        except Exception as e:
+            print(f"there was an error:   {e}")
+    else:
+        try:
+            pygame.mixer.init()
+            pygame.mixer.music.load(tempPath)
+            pygame.mixer.music.play()
+            while pygame.mixer.music.get_busy():
+                time.sleep(0.1)
+            pygame.mixer.music.stop()
+            pygame.mixer.quit()
+        except Exception as e:
+            print(f"there was an error:   {e}")
 
 #start creating UI to guess the song
 while True: 
@@ -203,5 +215,3 @@ while True:
         exit()
     else:
         print("please type yes or no")
-        
-print("hello?")

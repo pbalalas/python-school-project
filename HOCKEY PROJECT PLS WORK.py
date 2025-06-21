@@ -5,6 +5,7 @@ import tempfile
 import time
 import random
 import threading
+import re
 
 #Create dictionaries to store the musicians in multiple json files
 artists = {
@@ -95,7 +96,7 @@ def signUp():
         
     userLogin[username] = {"password": password, "score": 0}
     writeFile(userLogin, "userLogin")
-    return "successful"
+    return "successful", username
 
 
 #allow the user to login to their account
@@ -136,7 +137,7 @@ while login_flag == -1 and signUp_flag == -1:
 #implement sign up and login actions
 while True:
     if signUp_flag != -1:
-        result = signUp()
+        result, username = signUp()
         if result == "login":
             signUp_flag = -1
             login_flag = 0
@@ -212,7 +213,6 @@ def playAudio(url, duration):
 
             input("press enter to stop playing music:   ")
                 
-            
             pygame.mixer.music.fadeout(5000)
             time.sleep(5)
             pygame.mixer.quit()
@@ -245,4 +245,9 @@ playAudio(artists["Greenday"]["American Idiot"], 5)
 
 while play_game != -1:
     name, songName = randomSong()
-        
+    guess = playAudio(artists[name][songName], 5)
+    if guess.lower().replace(" ", "") == songName.lower().replace(" ",""):
+        userLogin = readFile("userLogin")
+        userLogin[username]["score"] += 3
+        writeFile(userLogin, "userLogin")
+        print(userLogin[username]["score"])

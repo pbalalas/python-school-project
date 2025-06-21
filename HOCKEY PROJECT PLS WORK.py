@@ -43,11 +43,11 @@ artists = {
         "Yellow Submarine": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/The%20Beatles%20-%20Yellow%20Submarine.mp3"
     },
     "Beethoven": {
-        "Symphony No. 5 in C Minor, Op. 67": "symphony5incminorop67.mp3",
-        "Für Elise": "furelise.mp3",
-        "Moonlight Sonata": "moonlightsonata.mp3",
-        "Ode to Joy": "odetojoy.mp3",
-        "Piano Concerto No. 5 in E-flat major, Op. 73": "pianoconcerto5.mp3"
+        "Symphony No. 5 in C Minor, Op. 67": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Beethoven_%20Symphony%20no%205%20in%20C%20minor%20op67.mp3",
+        "Für Elise": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Beethoven%20-%20Fr%20Elise%20Piano%20Version.mp3",
+        "Moonlight Sonata": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Beethoven%20-%20Moonlight%20Sonata%20FULL.mp3",
+        "Ode to Joy": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Ode%20to%20Joy.mp3",
+        "Turkish March, from The Ruins of Athens": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Ludwig%20van%20Beethoven%20-%20Turkish%20March%20from%20_The%20Ruins%20of%20Athens_%20piano%20solo%20version.mp3"
     },
 }
 

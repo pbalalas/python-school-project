@@ -5,7 +5,6 @@ import tempfile
 import time
 import random
 import threading
-import re
 
 #Create dictionaries to store the musicians in multiple json files
 artists = {

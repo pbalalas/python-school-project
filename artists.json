@@ -1,61 +1,61 @@
 {
-    "lewiscapaldi": {
+    "Lewis Capaldi": {
         "Someone You Loved": "someoneyouloved.mp3",
         "Before You Go": "beforeyougo.mp3",
         "Hold Me While You Wait": "holdmewhileyouwait.mp3",
         "Forever You Go": "foreveryougo.mp3",
         "Last Goodbye": "lastgoodbye.mp3"
     },
-    "greenday": {
-        "Basket Case": "basketcase.mp3",
-        "American Idiot": "americanidiot.mp3",
-        "Good Riddance": "goodriddance.mp3",
-        "When I Come Around": "whenicomearound.mp3",
-        "Boulevard of Broken Dreams": "boulevardofbrokendreams.mp3"
+    "Greenday": {
+        "Basket Case": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Basket%20Case.mp3",
+        "American Idiot": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Green%20Day%20-%20American%20Idiot%20Official%20Audio%20(1).mp3",
+        "Good Riddance": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Green%20Day%20-%20Good%20Riddance%20Time%20of%20Your%20Life%20Official%20Music%20Video%204K%20UPGRADE.mp3",
+        "When I Come Around": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/When%20I%20Come%20Around.mp3",
+        "Boulevard of Broken Dreams": "https://raw.githubusercontent.com/pbalalas/Audio-Python/main/Green%20Day%20-%20Boulevard%20of%20Broken%20Dreams%20Official%20Audio.mp3"
     },
-    "foofighters": {
+    "Foo Fighters": {
         "Everlong": "everlong.mp3",
         "Wheels": "wheels.mp3",
         "Learn to Fly": "learntofly.mp3",
         "Monkey Wrench": "monkeywrench.mp3",
         "Big Me": "bigme.mp3"
     },
-    "shawnmendes": {
+    "Shawn Mendes": {
         "Stitches": "stitches.mp3",
         "In My Blood": "inmyblood.mp3",
         "Senorita": "senorita.mp3",
         "Mercy": "mercy.mp3",
         "Lost in Japan": "lostinjapan.mp3"
     },
-    "metallica": {
+    "Metallica": {
         "Nothing Else Matters": "nothingelsematters.mp3",
         "Enter Sandman": "entersandman.mp3",
         "One Battery": "onebattery.mp3",
         "Sad But True": "sadbuttrue.mp3",
         "The Unforgiven": "theunforgiven.mp3"
     },
-    "beatles": {
+    "Beatles": {
         "Hey Jude": "heyjude.mp3",
         "Let Me": "letme.mp3",
         "Come In": "comein.mp3",
         "You Never Alone": "youneveralone.mp3",
         "All I\u2019ve Made Love": "allivemadelove.mp3"
     },
-    "mozart": {
+    "Mozart": {
         "Symphony No. 40 in G minor, K. 550": "symphonyno40ingminor,k.550.mp3",
         "The Requiem": "therequiem.mp3",
         "Eine kleine Nachtmusik": "einekleinenachtmusik.mp3",
         "Piano Sonata No. 16 in C major, K. 545": "pianosonatano16incmajor,k.545.mp3",
         "Don Giovanni": "dongiovanni.mp3"
     },
-    "arcticmonkeys": {
+    "Arctic Monkeys": {
         "Do I Wanna Know?": "doiwannaknow?.mp3",
         "R U Mine?": "rumine?.mp3",
         "Arabella": "arabella.mp3",
         "Cornerstone": "cornerstone.mp3",
         "Fluorescent Adolescent": "fluorescentadolescent.mp3"
     },
-    "bach": {
+    "Bach": {
         "Toccata and Fugue in D minor, BWV 565": "toccataandfugue.mp3",
         "Brandenburg Concerto No. 3": "brandenburgconcerto.mp3",
         "Air on the G String": "aironagstring.mp3",

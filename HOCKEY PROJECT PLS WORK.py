@@ -1,5 +1,3 @@
-from os import environ
-environ[]
 import json
 import pygame
 import requests
@@ -7,7 +5,7 @@ import tempfile
 import time
 import random
 import threading
-import string
+import difflib
 
 #Create dictionaries to store the musicians in multiple json files
 artists = {
@@ -71,11 +69,19 @@ def readFile(fileName):
 #Convert all dictionaries into a json file
 writeFile(artists, "artists")
 
-#create funciton to remove punctuation
-def removePunc(word):
-    for char in word:
-        if char not in string.punctuation:
-            word += char
+#create funciton to accept close matches
+def closeMatch(input, actual, threshold = 0.8):
+    def normalize(text):
+        text = text.lower()
+        allowed = set("abcdefghijklmnopqrstuvwxyz0123456789")
+        text = "".join(char for char in text if char in allowed)
+        text = text.split()
+        text = "".join(word for word in text if word not in ("and", "an", "the"))
+        return text
+    input = normalize(input)
+    actual = normalize(actual)
+    similarity = difflib.SequenceMatcher(None, input, actual).ratio()
+    return similarity >= threshold
 
 #allow user to sign up, using a function
 def signUp():    
@@ -91,8 +97,7 @@ def signUp():
     while username in userLogin:
         print("username already exists")
         username = str(input("Enter your username(or type 'login' to login instead):   "))
-        username2 += removePunc(username)
-        if username2.lower().replace(" ", "").find("login") != -1:
+        if closeMatch(username, "login") == True:
             return "login"
         
     password = str(input("Enter your password:   "))
@@ -120,8 +125,7 @@ def login():
     
     while username not in userLogin:
         username = str(input("username does not exist, try again (or type 'signup' to signup instead):   "))
-        username2 = removePunc(username)
-        if username2.lower().replace(" ", "").find("signup") != -1:
+        if closeMatch(username, "signup") == True:
             return "signup"
     
     password = str(input("enter your password:   "))
@@ -136,29 +140,27 @@ def login():
     
 #create user interface
 #ask user to login or sign up
-signUp_flag = -1
-login_flag = -1
-while login_flag == -1 and signUp_flag == -1:
+login_flag = False
+signUp_flag = False
+while login_flag == False and signUp_flag == False:
     access = str(input("do you want to login or sign up?   "))
-    access += removePunc(access)
-    access= access.lower().replace(" ", "")
-    signUp_flag= access.find("signup")
-    login_flag= access.find("login")
+    signUp_flag = closeMatch(access, "signup")
+    login_flag= closeMatch(access, "login")
 
 #implement sign up and login actions
 while True:
-    if signUp_flag != -1:
+    if signUp_flag != False:
         result, username = signUp()
         if result == "login":
-            signUp_flag = -1
-            login_flag = 0
+            signUp_flag = False
+            login_flag = True
         elif result == "successful":
             break
-    elif login_flag != -1:
+    elif login_flag != False:
         result, username = login()
         if result == "signup":
-            signUp_flag = 0
-            login_flag = -1
+            signUp_flag = True
+            login_flag = False
         elif result == "successful":
             userLogin = readFile("userLogin")
             print("\nYour score is ", userLogin[username]["score"])
@@ -204,7 +206,6 @@ def playAudio(url, duration):
             inputThread.start()
             
             stop_flag.wait(duration)
-            input("press enter to stop playing music:   ")
             
             pygame.mixer.music.fadeout(5000)
             time.sleep(5)
@@ -259,13 +260,12 @@ pgame("")
 
 #just testing: playAudio(artists["Greenday"]["American Idiot"], 5)
 
+play_game = -1
 while play_game != -1:
     name, songName = randomSong()
     guess = playAudio(artists[name][songName], 5)
-    guess = removePunc(guess)
-    songName = removePunc(songName)
 
-    if guess.lower().replace(" ", "") == songName.lower().replace(" ",""):
+    if closeMatch(guess, songName)== True:
         userLogin = readFile("userLogin")
         userLogin[username]["score"] += 3
         writeFile(userLogin, "userLogin")
@@ -274,5 +274,3 @@ while play_game != -1:
     else:
         name, songName = randomSong()
         guess = playAudio(artists[name][songName], 10)
-        guess = removePunc(guess)
-        songName = removePunc(songName)

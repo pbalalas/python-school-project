@@ -1,5 +1,7 @@
-import json
+import os
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 import pygame
+import json
 import requests
 import tempfile
 import time
@@ -188,7 +190,7 @@ def playAudio(url, duration):
         tempPath = file.name
 
     #play audio for requested amount of time
-    if duration != 0:
+    if duration > 0:
         try:
             #this part should stop as soon as the user enters something
             pygame.mixer.init()
@@ -207,8 +209,8 @@ def playAudio(url, duration):
             
             stop_flag.wait(duration)
             
-            pygame.mixer.music.fadeout(5000)
-            time.sleep(5)
+            pygame.mixer.music.fadeout(2000)
+            time.sleep(2)
             inputThread.join()
             pygame.mixer.quit()
 
@@ -226,18 +228,17 @@ def playAudio(url, duration):
 
             input("press enter to stop playing music:   ")
                 
-            pygame.mixer.music.fadeout(5000)
-            time.sleep(5)
+            pygame.mixer.music.fadeout(2000)
+            time.sleep(2)
             pygame.mixer.quit()
         except Exception as e:
             print(f"there was an error:   {e}")
 
 #start creating UI to guess the song
-def pgame(again):
+def pgame(again = ""):
     while True: 
         play_game = input(f"Do you want to play{again}?   ")
-        play_game = play_game.lower().replace(" ","").find("yes")
-        if play_game != -1:
+        if closeMatch(play_game, "yes"):
             break
         elif play_game.lower().replace(" ", "").find("no") != -1:
             print("why did you even login??")
@@ -256,7 +257,7 @@ def pgame(again):
             print("please type yes or no")
 
 #actually ask the user to play the game
-pgame("")
+pgame()
 
 #just testing: playAudio(artists["Greenday"]["American Idiot"], 5)
 

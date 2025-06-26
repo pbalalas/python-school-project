@@ -171,6 +171,7 @@ while True:
 #create function to choose a random url from the dictionary
 def randomSong():
     #chooses a random artist from the dictionary artists
+    artists= readFile("artists")
     name = random.choice(list(artists.keys()))
     #chooses a random song from the artist
     songName = random.choice(list(artists[name]))
@@ -235,33 +236,52 @@ def playAudio(url, duration):
             print(f"there was an error:   {e}")
 
 #start creating UI to guess the song
-def pgame(again = ""):
+def pgame(again = "", kill = ""):
     while True: 
         play_game = input(f"Do you want to play{again}?   ")
         if closeMatch(play_game, "yes"):
             break
-        elif play_game.lower().replace(" ", "").find("no") != -1:
-            print("why did you even login??")
-            time.sleep(2)
-            print("what is the point?!?")
-            time.sleep(2)
-            print("what a waste of time!!!!!")
-            time.sleep(2)
-            print("The AMouNt OF FlESh and Bone ThaT wEnT inTo ThiS!!")
-            time.sleep(2)
-            print("YOU WILL REGRET THIS")
-            time.sleep(3)
-            print("goodbye")
-            exit()
+        elif kill == "kill":
+            if play_game.lower().replace(" ", "").find("no") != -1:
+                print("why did you even login??")
+                time.sleep(2)
+                print("what is the point?!?")
+                time.sleep(2)
+                print("what a waste of time!!!!!")
+                time.sleep(2)
+                print("The AMouNt OF FlESh and Bone ThaT wEnT inTo ThiS!!")
+                time.sleep(2)
+                print("YOU WILL REGRET THIS")
+                time.sleep(3)
+                print("goodbye")
+                exit()
+        elif kill == "":
+            if play_game.lower().replace(" ", "").find("no") != -1:
+                return "leaderboard"
         else:
             print("please type yes or no")
-
-#actually ask the user to play the game
-pgame()
-
+    return  play_game
 #just testing: playAudio(artists["Greenday"]["American Idiot"], 5)
 
+
+#create a function to change the song name name into one with only the first letters
+def blank(songName):
+    letters= []
+    for letter in songName:
+        if letter == " ":
+            letters.append(" ")
+        elif letter == letter.lower():
+            letters.append("_")
+        else:
+            letters.append(letter)
+    masked = "".join(letters)
+    return masked    
+
+
 play_game = -1
+#actually allow the user to play the game
+
+play_game= pgame()
 while play_game != -1:
     name, songName = randomSong()
     guess = playAudio(artists[name][songName], 5)
@@ -271,7 +291,24 @@ while play_game != -1:
         userLogin[username]["score"] += 3
         writeFile(userLogin, "userLogin")
         print("you get ",userLogin[username]["score"], " points")
-        pgame(" again")
+        play_game = pgame(" again")
     else:
         name, songName = randomSong()
-        guess = playAudio(artists[name][songName], 10)
+        masked = blank(songName)
+        print("The name of the artist is ", name)
+        guess = playAudio(artists[name][songName], 7)
+        
+        if closeMatch(guess, songName)== True:
+            userLogin = readFile("userLogin")
+            userLogin[username]["score"] += 2
+            writeFile(userLogin, "userLogin")
+            print("you get ",userLogin[username]["score"], " points")
+            play_game = pgame(" again")
+        
+        else:
+            name, songName = randomSong()
+            masked = blank(songName)
+            print("Here is the song name but blanked:")
+            print(masked)
+            guess = playAudio(artists[name][songName], 7)
+        

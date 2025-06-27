@@ -242,7 +242,7 @@ def pgame(again = "", kill = ""):
         if closeMatch(play_game, "yes"):
             break
         elif kill == "kill":
-            if play_game.lower().replace(" ", "").find("no") != -1:
+            if closeMatch(play_game, "no") == True:
                 print("why did you even login??")
                 time.sleep(2)
                 print("what is the point?!?")
@@ -256,7 +256,7 @@ def pgame(again = "", kill = ""):
                 print("goodbye")
                 exit()
         elif kill == "":
-            if play_game.lower().replace(" ", "").find("no") != -1:
+            if closeMatch(play_game, "no") == True:
                 return "leaderboard"
         else:
             print("please type yes or no")
@@ -281,7 +281,8 @@ def blank(songName):
 play_game = -1
 #actually allow the user to play the game
 
-play_game= pgame()
+play_game= pgame("", "kill")
+
 while play_game != -1:
     name, songName = randomSong()
     guess = playAudio(artists[name][songName], 5)
@@ -293,9 +294,8 @@ while play_game != -1:
         print("you get ",userLogin[username]["score"], " points")
         play_game = pgame(" again")
     else:
-        name, songName = randomSong()
-        masked = blank(songName)
-        print("The name of the artist is ", name)
+        print("The name of the artist is:")
+        print(name)
         guess = playAudio(artists[name][songName], 7)
         
         if closeMatch(guess, songName)== True:
@@ -306,9 +306,29 @@ while play_game != -1:
             play_game = pgame(" again")
         
         else:
-            name, songName = randomSong()
             masked = blank(songName)
             print("Here is the song name but blanked:")
             print(masked)
-            guess = playAudio(artists[name][songName], 7)
-        
+            guess = playAudio(artists[name][songName], 10)
+
+            if closeMatch(guess, songName)== True:
+                userLogin = readFile("userLogin")
+                userLogin[username]["score"] += 1
+                writeFile(userLogin, "userLogin")
+                print("you get ",userLogin[username]["score"], " points")
+                play_game = pgame(" again")
+            else:
+                print("YOU FAILED")
+                play_game = pgame(" again")
+
+
+while True: 
+        leaderboard = input("Do you want to see the leaderboard?:   ")
+        if closeMatch(leaderboard, "yes"):
+            break
+        elif closeMatch(leaderboard, "no"):
+            print("Thank you for playing")
+            exit()
+        else:
+            print("please type yes or no")
+

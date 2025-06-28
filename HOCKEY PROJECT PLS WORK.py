@@ -93,22 +93,22 @@ def signUp():
     except(FileNotFoundError, json.JSONDecodeError):
         userLogin= {}
     
-    print("You are signing in")
-    username = str(input("Enter your username:   "))
+    print("You are signing up")
+    username = str(input("Enter your username:   ").strip())
 
     while username in userLogin:
         print("username already exists")
-        username = str(input("Enter your username(or type 'login' to login instead):   "))
+        username = str(input("Enter your username(or type 'login' to login instead):   ").strip())
         if closeMatch(username, "login") == True:
             return "login"
         
-    password = str(input("Enter your password:   "))
-    doubleChecking = str(input("retype your password:  "))
+    password = str(input("Enter your password:   ").strip())
+    doubleChecking = str(input("retype your password:  ").strip())
     while doubleChecking != password: 
         if doubleChecking != password:
             print("password does not match, retry")
-            password = str(input("Enter your password:   "))
-            doubleChecking = str(input("retype your password:   "))
+            password = str(input("Enter your password:   ").strip())
+            doubleChecking = str(input("retype your password:   ").strip())
         
     userLogin[username] = {"password": password, "score": 0}
     writeFile(userLogin, "userLogin")
@@ -123,20 +123,20 @@ def login():
         userLogin= {}
     
     print("You are logging in")
-    username = str(input("enter your username:   "))
+    username = str(input("enter your username:   ").strip())
     
     while username not in userLogin:
-        username = str(input("username does not exist, try again (or type 'signup' to signup instead):   "))
+        username = str(input("username does not exist, try again (or type 'signup' to signup instead):   ").strip())
         if closeMatch(username, "signup") == True:
             return "signup"
     
-    password = str(input("enter your password:   "))
+    password = str(input("enter your password:   ").strip())
     if userLogin[username]["password"] == password:
         print("login successful")
         return "successful", username
     else:
         while userLogin[username]["password"] != password:
-            password = str(input("password is incorrect, try again:   "))
+            password = str(input("password is incorrect, try again:   ").strip())
         print("login successful")
         return "successful", username
     
@@ -145,7 +145,7 @@ def login():
 login_flag = False
 signUp_flag = False
 while login_flag == False and signUp_flag == False:
-    access = str(input("do you want to login or sign up?   "))
+    access = str(input("do you want to login or sign up?:   "))
     signUp_flag = closeMatch(access, "signup")
     login_flag= closeMatch(access, "login")
 
@@ -165,7 +165,7 @@ while True:
             login_flag = False
         elif result == "successful":
             userLogin = readFile("userLogin")
-            print("\nYour score is ", userLogin[username]["score"])
+            print("\nYour total score is ", userLogin[username]["score"])
             break
 
 #create function to choose a random url from the dictionary
@@ -214,6 +214,7 @@ def playAudio(url, duration):
             time.sleep(2)
             inputThread.join()
             pygame.mixer.quit()
+            os.remove(tempPath)
 
             return guess["guess"]
             
@@ -227,11 +228,13 @@ def playAudio(url, duration):
             pygame.mixer.music.load(tempPath)
             pygame.mixer.music.play()
 
-            input("press enter to stop playing music:   ")
+            input("press enter to stop playing music")
                 
             pygame.mixer.music.fadeout(2000)
             time.sleep(2)
             pygame.mixer.quit()
+            os.remove(tempPath)
+
         except Exception as e:
             print(f"there was an error:   {e}")
 
@@ -239,11 +242,18 @@ def playAudio(url, duration):
 def pgame(again = "", kill = ""):
     while True: 
         if again == " again":
-            listen = input("Do you want to listen to the whole song")
-        if closeMatch(listen, "yes"):
-            return "listen"
-        play_game = input(f"Do you want to play{again}?   ")
+            while True:
+                listen = input("Do you want to listen to the whole song:   ")
+                if closeMatch(listen, "yes"):
+                    return "listen"
+                elif closeMatch(listen, "no"):
+                    break
+                else:
+                    print("please type yes or no")
+                    
+        play_game = input(f"Do you want to play{again}?:   ")
         if closeMatch(play_game, "yes"):
+            play_game = True
             break
         elif kill == "kill":
             if closeMatch(play_game, "no") == True:
@@ -261,7 +271,8 @@ def pgame(again = "", kill = ""):
                 exit()
         elif kill == "":
             if closeMatch(play_game, "no") == True:
-                return "leaderboard"
+                play_game = False
+                break
         else:
             print("please type yes or no")
     return  play_game
@@ -285,6 +296,7 @@ def blank(songName):
 
 #actually allow the user to play the game
 
+play_game = True
 play_game= pgame("", "kill")
 
 while play_game == True:
@@ -296,8 +308,10 @@ while play_game == True:
         userLogin[username]["score"] += 3
         writeFile(userLogin, "userLogin")
         print("you get 3 points for getting it first try")
-        print("your score is ",userLogin[username]["score"], " points")
+        print("your total score is ",userLogin[username]["score"], " points")
         play_game = pgame(" again")
+        if play_game == "listen":
+                playAudio(artists[name][songName], 0)
     else:
         #gives a clue (the artist name) and gives two points for getting it second try
         print("The name of the artist is:")
@@ -309,7 +323,7 @@ while play_game == True:
             userLogin[username]["score"] += 2
             writeFile(userLogin, "userLogin")
             print("you get 2 points for getting it second try")
-            print("your score is",userLogin[username]["score"])
+            print("your total score is",userLogin[username]["score"])
             play_game = pgame(" again")
             if play_game == "listen":
                 playAudio(artists[name][songName], 0)
@@ -326,14 +340,18 @@ while play_game == True:
                 userLogin[username]["score"] += 1
                 writeFile(userLogin, "userLogin")
                 print("you get 1 point for getting it on your last try")
-                print("your score is ",userLogin[username]["score"])
+                print("your total score is ",userLogin[username]["score"])
                 play_game = pgame(" again")
+                if play_game == "listen":
+                    playAudio(artists[name][songName], 0)
             else:
                 #gets angry at you for loosing
                 print("You used up all your guesses- 0 points")
                 print("YOU FAILED")
                 print(f"the correct answer was {songName} by {name} \n")
                 play_game = pgame(" again")
+                if play_game == "listen":
+                    playAudio(artists[name][songName], 0)
 
 
 while True: 
@@ -346,11 +364,14 @@ while True:
         else:
             print("please type yes or no")
 
-readFile("userLogin")
-userLogin = sorted(userLogin[username]["score"])
-writeFile(userLogin, "userLogin")
-readFile("userLogin")
-leaderboard = list(userLogin[username]["score"][0:5])
-for user in leaderboard:
-    print(user)
+userLogin = readFile("userLogin")
+sortedScore = sorted(userLogin.items(), key = lambda x: x[1]["score"], reverse = True)
+leaderboard = sortedScore[0:5]
 
+print("Here is the leaderboard:\n")
+for rank, (user, data) in enumerate(leaderboard, start =1):
+    print(f"#{rank} {user}: {data['score']} points")
+
+print("\nThank you for playing")
+time.sleep(10)
+exit()

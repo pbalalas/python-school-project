@@ -238,6 +238,10 @@ def playAudio(url, duration):
 #start creating UI to guess the song
 def pgame(again = "", kill = ""):
     while True: 
+        if again == " again":
+            listen = input("Do you want to listen to the whole song")
+        if closeMatch(listen, "yes"):
+            return "listen"
         play_game = input(f"Do you want to play{again}?   ")
         if closeMatch(play_game, "yes"):
             break
@@ -278,22 +282,24 @@ def blank(songName):
     return masked    
 
 
-play_game = -1
+
 #actually allow the user to play the game
 
 play_game= pgame("", "kill")
 
-while play_game != -1:
+while play_game == True:
     name, songName = randomSong()
     guess = playAudio(artists[name][songName], 5)
-
+    #three points for getting the answer first try
     if closeMatch(guess, songName)== True:
         userLogin = readFile("userLogin")
         userLogin[username]["score"] += 3
         writeFile(userLogin, "userLogin")
-        print("you get ",userLogin[username]["score"], " points")
+        print("you get 3 points for getting it first try")
+        print("your score is ",userLogin[username]["score"], " points")
         play_game = pgame(" again")
     else:
+        #gives a clue (the artist name) and gives two points for getting it second try
         print("The name of the artist is:")
         print(name)
         guess = playAudio(artists[name][songName], 7)
@@ -302,10 +308,14 @@ while play_game != -1:
             userLogin = readFile("userLogin")
             userLogin[username]["score"] += 2
             writeFile(userLogin, "userLogin")
-            print("you get ",userLogin[username]["score"], " points")
+            print("you get 2 points for getting it second try")
+            print("your score is",userLogin[username]["score"])
             play_game = pgame(" again")
+            if play_game == "listen":
+                playAudio(artists[name][songName], 0)
         
         else:
+            #gives a final clue (song name but blanked) and gives 1 point for getting it right third try
             masked = blank(songName)
             print("Here is the song name but blanked:")
             print(masked)
@@ -315,10 +325,14 @@ while play_game != -1:
                 userLogin = readFile("userLogin")
                 userLogin[username]["score"] += 1
                 writeFile(userLogin, "userLogin")
-                print("you get ",userLogin[username]["score"], " points")
+                print("you get 1 point for getting it on your last try")
+                print("your score is ",userLogin[username]["score"])
                 play_game = pgame(" again")
             else:
+                #gets angry at you for loosing
+                print("You used up all your guesses- 0 points")
                 print("YOU FAILED")
+                print(f"the correct answer was {songName} by {name} \n")
                 play_game = pgame(" again")
 
 
@@ -331,4 +345,12 @@ while True:
             exit()
         else:
             print("please type yes or no")
+
+readFile("userLogin")
+userLogin = sorted(userLogin[username]["score"])
+writeFile(userLogin, "userLogin")
+readFile("userLogin")
+leaderboard = list(userLogin[username]["score"][0:5])
+for user in leaderboard:
+    print(user)
 
